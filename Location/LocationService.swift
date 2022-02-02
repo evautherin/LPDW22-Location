@@ -22,6 +22,15 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.model = model
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        let region = CLCircularRegion(
+            center: CLLocationCoordinate2D(latitude: 37.33434427635175, longitude: -122.04146513231953),
+            radius: 150.0,
+            identifier: "Bridge"
+        )
+        region.notifyOnExit = true
+        region.notifyOnEntry = true
+        locationManager.startMonitoring(for: region)
     }
     
     func stop() {
@@ -43,10 +52,18 @@ extension LocationService {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
+//        print(locations)
         
         locations.forEach({ location in
             model?.region.center = location.coordinate
         })
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("didEnter \(region.identifier)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("didExitRegion \(region.identifier)")
     }
 }
