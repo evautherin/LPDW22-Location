@@ -21,6 +21,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     func start(model: ViewModel) {
         self.model = model
         locationManager.requestAlwaysAuthorization()
+        locationManager.showsBackgroundLocationIndicator = true
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         
         let region = CLCircularRegion(
