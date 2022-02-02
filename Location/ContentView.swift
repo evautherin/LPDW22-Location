@@ -12,7 +12,12 @@ struct ContentView: View {
     @StateObject var model = ViewModel()
     
     var body: some View {
-        Map(coordinateRegion: $model.region)
+        ZStack {
+            Map(coordinateRegion: $model.region)
+            Circle()
+                .fill(Color.blue)
+                .frame(width: 20.0, height: 20.0)
+        }
     }
 }
 
