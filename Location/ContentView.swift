@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
+    @StateObject var model = ViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Map(coordinateRegion: $model.region)
     }
 }
 
