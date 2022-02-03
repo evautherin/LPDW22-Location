@@ -12,7 +12,12 @@ struct SettingsView: View {
     @EnvironmentObject var model: ViewModel
     
     var body: some View {
-        Text("Settings")
+        ZStack {
+            Map(coordinateRegion: $model.userCoordinateRegion)
+            Circle()
+                .fill(Color.blue)
+                .frame(width: 20.0, height: 20.0)
+        }
     }
 }
 

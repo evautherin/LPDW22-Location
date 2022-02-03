@@ -26,7 +26,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         let region = CLCircularRegion(
-            center: CLLocationCoordinate2D(latitude: 37.33434427635175, longitude: -122.04146513231953),
+            center: model.userCoordinateRegion.center,
             radius: 150.0,
             identifier: "Bridge"
         )
@@ -36,7 +36,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func stop() {
-        
+        locationManager.stopUpdatingLocation()
     }
 }
 
@@ -57,7 +57,7 @@ extension LocationService {
 //        print(locations)
         
         locations.forEach({ location in
-            model?.region.center = location.coordinate
+            model?.userCoordinateRegion.center = location.coordinate
         })
     }
     

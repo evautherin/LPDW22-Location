@@ -13,12 +13,13 @@ import MapKit
 
 class ViewModel: ObservableObject {
     let locationService = LocationService()
-    @Published var region = MKCoordinateRegion(
+    @Published var userCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        latitudinalMeters: 100.0,
+        longitudinalMeters: 100.0
     )
     
-    init() {
-        locationService.start(model: self)
-    }
+//    init() {
+//        locationService.start(model: self)
+//    }
 }
