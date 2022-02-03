@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct SettingsView: View {
-    @ObservedObject var model = ViewModel()
+    @ObservedObject var model: ViewModel
     
     var body: some View {
         Text("Settings")
@@ -18,6 +18,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(model: ViewModel())
     }
 }
