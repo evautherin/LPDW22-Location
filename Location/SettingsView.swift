@@ -11,7 +11,7 @@ import MapKit
 struct SettingsView: View {
     @EnvironmentObject var model: ViewModel
     @State var coordinateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
+        center: LocationService.shared.userLocation.value,
         latitudinalMeters: 100.0,
         longitudinalMeters: 100.0
     )
