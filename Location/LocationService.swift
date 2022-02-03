@@ -33,6 +33,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func startGeofencing(region: CLCircularRegion) {
+        stopGeofencing()
+        
         region.notifyOnExit = true
         region.notifyOnEntry = true
         locationManager.startMonitoring(for: region)
@@ -40,7 +42,9 @@ class LocationService: NSObject, CLLocationManagerDelegate {
 
     
     func stopGeofencing() {
-        
+        locationManager.monitoredRegions.forEach({ region in
+            locationManager.stopMonitoring(for: region)
+        })
     }
 }
 
