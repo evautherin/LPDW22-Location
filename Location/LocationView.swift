@@ -19,10 +19,10 @@ struct LocationView: View {
                 .frame(width: 20.0, height: 20.0)
         }
         .onAppear(perform: {
-            model.locationService.start(model: model)
+            LocationService.shared.start(model: model)
         })
         .onDisappear(perform: {
-            model.locationService.stop()
+            LocationService.shared.stop()
         })
     }
 }

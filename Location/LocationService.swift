@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import Combine
 import CoreLocation
 
 
 class LocationService: NSObject, CLLocationManagerDelegate {
-    var model: ViewModel?
+    static let shared = LocationService()
+    let userLocation = CurrentValueSubject<CLLocationCoordinate2D, Never>(CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    
     let locationManager = CLLocationManager()
     
     override init() {
@@ -19,24 +22,25 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func start(model: ViewModel) {
-        self.model = model
         locationManager.requestAlwaysAuthorization()
         locationManager.showsBackgroundLocationIndicator = true
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
-        
-        let region = CLCircularRegion(
-            center: model.userCoordinateRegion.center,
-            radius: 150.0,
-            identifier: "Bridge"
-        )
-        region.notifyOnExit = true
-        region.notifyOnEntry = true
-        locationManager.startMonitoring(for: region)
     }
     
     func stop() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func startGeofencing(region: CLCircularRegion) {
+        region.notifyOnExit = true
+        region.notifyOnEntry = true
+        locationManager.startMonitoring(for: region)
+    }
+
+    
+    func stopGeofencing() {
+        
     }
 }
 
@@ -57,12 +61,12 @@ extension LocationService {
 //        print(locations)
         
         locations.forEach({ location in
-            model?.userCoordinateRegion.center = location.coordinate
+            userLocation.send(location.coordinate)
         })
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("didEnter \(region.identifier)")
+        print("didEnterRegion \(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {

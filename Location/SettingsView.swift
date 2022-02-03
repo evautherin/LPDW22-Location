@@ -10,10 +10,16 @@ import MapKit
 
 struct SettingsView: View {
     @EnvironmentObject var model: ViewModel
+    @State var coordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
+        latitudinalMeters: 100.0,
+        longitudinalMeters: 100.0
+    )
+    
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $model.userCoordinateRegion)
+            Map(coordinateRegion: $coordinateRegion)
             Circle()
                 .fill(Color.blue)
                 .frame(width: 20.0, height: 20.0)
@@ -26,3 +32,9 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView().environmentObject(ViewModel())
     }
 }
+
+//let region = CLCircularRegion(
+//    center: model.settingsCoordinateRegion.center,
+//    radius: 150.0,
+//    identifier: "Bridge"
+//)
