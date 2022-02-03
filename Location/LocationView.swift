@@ -23,6 +23,6 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView()
+        LocationView().environmentObject(ViewModel())
     }
 }
