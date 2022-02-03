@@ -12,8 +12,8 @@ struct SettingsView: View {
     @EnvironmentObject var model: ViewModel
     @State var coordinateRegion = MKCoordinateRegion(
         center: LocationService.shared.userLocation.value,
-        latitudinalMeters: 100.0,
-        longitudinalMeters: 100.0
+        latitudinalMeters: 500.0,
+        longitudinalMeters: 500.0
     )
     
     
