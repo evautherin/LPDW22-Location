@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F60EA7427ABDAAD0057C536 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60EA7327ABDAAD0057C536 /* LocationView.swift */; };
+		8F60EA7627ABDC810057C536 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60EA7527ABDC810057C536 /* SettingsView.swift */; };
 		8FAEF76327AAB6E50044F846 /* LocationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEF76227AAB6E50044F846 /* LocationApp.swift */; };
 		8FAEF76527AAB6E50044F846 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEF76427AAB6E50044F846 /* ContentView.swift */; };
 		8FAEF76727AAB6E80044F846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FAEF76627AAB6E80044F846 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F60EA7327ABDAAD0057C536 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		8F60EA7527ABDC810057C536 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8FAEF75F27AAB6E50044F846 /* Location.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Location.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAEF76227AAB6E50044F846 /* LocationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationApp.swift; sourceTree = "<group>"; };
 		8FAEF76427AAB6E50044F846 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				8FAEF77427AADA840044F846 /* Info.plist */,
 				8FAEF76227AAB6E50044F846 /* LocationApp.swift */,
 				8FAEF76427AAB6E50044F846 /* ContentView.swift */,
+				8F60EA7327ABDAAD0057C536 /* LocationView.swift */,
+				8F60EA7527ABDC810057C536 /* SettingsView.swift */,
 				8FAEF77027AAB7C00044F846 /* ViewModel.swift */,
 				8FAEF77227AAB8AB0044F846 /* LocationService.swift */,
 				8FAEF76627AAB6E80044F846 /* Assets.xcassets */,
@@ -147,6 +153,8 @@
 			files = (
 				8FAEF76527AAB6E50044F846 /* ContentView.swift in Sources */,
 				8FAEF77127AAB7C00044F846 /* ViewModel.swift in Sources */,
+				8F60EA7427ABDAAD0057C536 /* LocationView.swift in Sources */,
+				8F60EA7627ABDC810057C536 /* SettingsView.swift in Sources */,
 				8FAEF77327AAB8AB0044F846 /* LocationService.swift in Sources */,
 				8FAEF76327AAB6E50044F846 /* LocationApp.swift in Sources */,
 			);

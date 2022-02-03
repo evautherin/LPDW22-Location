@@ -12,11 +12,16 @@ struct ContentView: View {
     @StateObject var model = ViewModel()
     
     var body: some View {
-        ZStack {
-            Map(coordinateRegion: $model.region)
-            Circle()
-                .fill(Color.blue)
-                .frame(width: 20.0, height: 20.0)
+        TabView {
+            LocationView(model: model)
+                .tabItem {
+                    Label("Location", systemImage: "location")
+                }
+
+            SettingsView(model: model)
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
         }
     }
 }
