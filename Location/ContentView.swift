@@ -13,16 +13,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            LocationView(model: model)
+            LocationView()
                 .tabItem {
                     Label("Location", systemImage: "location")
                 }
 
-            SettingsView(model: model)
+            SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .environmentObject(model)
     }
 }
 

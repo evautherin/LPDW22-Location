@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct LocationView: View {
-    @ObservedObject var model: ViewModel
+    @EnvironmentObject var model: ViewModel
     
     var body: some View {
         ZStack {
@@ -23,6 +23,6 @@ struct LocationView: View {
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(model: ViewModel())
+        LocationView()
     }
 }
