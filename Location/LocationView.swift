@@ -12,27 +12,29 @@ struct LocationView: View {
     @EnvironmentObject var model: ViewModel
     
     var body: some View {
-        NavigationView {
+        ZStack(alignment: .topTrailing) {
             ZStack {
-                Map(coordinateRegion: $model.userCoordinateRegion)
-                Circle()
-                    .fill(Color.blue)
-                    .frame(width: 20.0, height: 20.0)
+                    Map(coordinateRegion: $model.userCoordinateRegion)
+                    Circle()
+                        .fill(Color.blue)
+                        .frame(width: 20.0, height: 20.0)
+                    
+                }
+                .onAppear(perform: {
+                    LocationService.shared.start(model: model)
+                })
+                .onDisappear(perform: {
+                    LocationService.shared.stop()
+                })
+            
+            Button {
+                print("Geofencing")
+            } label: {
+                Image(systemName: "circle.dashed")
             }
-//            .toolbar {
-//                Button {
-//                    print("Geofencing")
-//                } label: {
-//                    Image(systemName: "circle.dashed")
-//                }
-//                
-//            }
-            .onAppear(perform: {
-                LocationService.shared.start(model: model)
-            })
-            .onDisappear(perform: {
-                LocationService.shared.stop()
-        })
+            .buttonStyle(.borderedProminent)
+            .padding()
+
         }
     }
 }
