@@ -13,7 +13,8 @@ import CoreLocation
 class LocationService: NSObject, CLLocationManagerDelegate {
     static let shared = LocationService()
     let userLocation = CurrentValueSubject<CLLocationCoordinate2D, Never>(CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    
+    let isMonitoringRegion = CurrentValueSubject<Bool, Never>(false)
+
     let locationManager = CLLocationManager()
     
     override init() {
