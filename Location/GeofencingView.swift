@@ -17,14 +17,11 @@ struct GeofencingView: View {
 //        latitudinalMeters: 5000.0,
 //        longitudinalMeters: 5000.0
 //    )
-    @State var name: String = ""
-    @State var meter = 5000.0
-    @State var geofencing = false
     
     var body: some View {
         VStack{
             TextField("Name of your region", text: $model.name)
-            Text("Meter: \(Int(meter))")
+            Text("Meter: \(Int(model.meter))")
             Slider(value: $model.meter, in: 100...10000, step: 100)
             Toggle("Geofencing", isOn: $model.geofencing)
         }.padding()
