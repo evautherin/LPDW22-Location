@@ -10,17 +10,37 @@ import MapKit
 
 struct LocationView: View {
     @EnvironmentObject var model: ViewModel
-    
     @State var isSsettingsActive = false
+    
+    let animationDuration = 1.0
     
     var body: some View {
         VStack {
             ZStack(alignment: .topTrailing) {
                 ZStack {
                         Map(coordinateRegion: $model.userCoordinateRegion)
-                        Circle()
-                            .fill(Color.blue)
-                            .frame(width: 20.0, height: 20.0)
+                    
+                        if (isSsettingsActive) {
+                            ZStack {
+                                Circle()
+                                    .strokeBorder(Color.white, lineWidth: 3)
+                                    .frame(width: 22.0, height: 22.0)
+                                Rectangle()
+                                    .frame(width: 22, height: 2, alignment: .center)
+                                Rectangle()
+                                    .frame(width: 2, height: 22, alignment: .center)
+                            }
+                            .transition(
+                                AnyTransition.opacity.animation(.linear(duration: animationDuration))
+                            )
+                        } else {
+                            Circle()
+                                .fill(Color.blue)
+                                .frame(width: 20.0, height: 20.0)
+                                .transition(
+                                    AnyTransition.opacity.animation(.linear(duration: animationDuration))
+                                )
+                        }
                         
                     }
                     .onAppear(perform: {
@@ -32,7 +52,9 @@ struct LocationView: View {
                 
                 Button {
                     print("Geofencing")
-                    isSsettingsActive = !isSsettingsActive
+                    withAnimation(.easeInOut(duration: animationDuration)) {
+                        isSsettingsActive.toggle()
+                    }
                 } label: {
                     if (isSsettingsActive) {
                         Image(systemName: "xmark.circle")
@@ -47,6 +69,9 @@ struct LocationView: View {
 
             if (isSsettingsActive) {
                 SettingsView()
+                    .transition(
+                        AnyTransition.opacity.animation(.linear(duration: animationDuration))
+                    )
             }
         }
     }
