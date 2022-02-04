@@ -14,4 +14,10 @@ class GeofencingViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var meter = 5000.0
     @Published var geofencing = false
+    
+    init() {
+        LocationService.shared.isMonitoringRegion
+            .removeDuplicates()
+            .assign(to: &$geofencing)
+    }
 }

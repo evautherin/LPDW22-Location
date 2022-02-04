@@ -24,7 +24,21 @@ struct GeofencingView: View {
             Text("Meter: \(Int(model.meter))")
             Slider(value: $model.meter, in: 100...10000, step: 100)
             Toggle("Geofencing", isOn: $model.geofencing)
-        }.padding()
+        }
+        .padding()
+        .onDisappear(perform: {
+            let region = CLCircularRegion(
+                center: globalModel.userCoordinateRegion.center,
+                radius: model.meter,
+                identifier: model.name
+            )
+            
+            if (model.geofencing) {
+                LocationService.shared.startGeofencing(region: region)
+            } else {
+                LocationService.shared.stopGeofencing()
+            }
+        })
     }
 }
 
@@ -34,8 +48,3 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
-//let region = CLCircularRegion(
-//    center: model.settingsCoordinateRegion.center,
-//    radius: 150.0,
-//    identifier: "Bridge"
-//)

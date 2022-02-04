@@ -20,6 +20,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
+        updateMonitoringStatus()
     }
     
     func start(model: ViewModel) {
@@ -33,18 +34,29 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
+    var isMonitoringStarted: Bool {
+        locationManager.monitoredRegions.count > 0
+    }
+    
+    func updateMonitoringStatus() {
+        isMonitoringRegion.send(isMonitoringStarted)
+    }
+    
     func startGeofencing(region: CLCircularRegion) {
         stopGeofencing()
         
         region.notifyOnExit = true
         region.notifyOnEntry = true
         locationManager.startMonitoring(for: region)
+        
+        updateMonitoringStatus()
     }
 
     
     func stopGeofencing() {
         locationManager.monitoredRegions.forEach({ region in
             locationManager.stopMonitoring(for: region)
+            updateMonitoringStatus()
         })
     }
 }
