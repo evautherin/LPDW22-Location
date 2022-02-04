@@ -23,10 +23,10 @@ struct GeofencingView: View {
     
     var body: some View {
         VStack{
-            TextField("Name of your region", text: $name)
+            TextField("Name of your region", text: $model.name)
             Text("Meter: \(Int(meter))")
-            Slider(value: $meter, in: 100...10000, step: 100)
-            Toggle("Geofencing", isOn: $geofencing)
+            Slider(value: $model.meter, in: 100...10000, step: 100)
+            Toggle("Geofencing", isOn: $model.geofencing)
         }.padding()
     }
 }
