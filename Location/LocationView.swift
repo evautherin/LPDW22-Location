@@ -10,7 +10,7 @@ import MapKit
 
 struct LocationView: View {
     @EnvironmentObject var model: ViewModel
-    @State var isSsettingsActive = false
+    @State var isGeofencingActive = false
     
     let animationDuration = 1.0
     
@@ -20,7 +20,7 @@ struct LocationView: View {
                 ZStack {
                         Map(coordinateRegion: $model.userCoordinateRegion)
                     
-                        if (isSsettingsActive) {
+                        if (isGeofencingActive) {
                             ZStack {
                                 Circle()
                                     .strokeBorder(Color.white, lineWidth: 3)
@@ -53,10 +53,10 @@ struct LocationView: View {
                 Button {
                     print("Geofencing")
                     withAnimation(.easeInOut(duration: animationDuration)) {
-                        isSsettingsActive.toggle()
+                        isGeofencingActive.toggle()
                     }
                 } label: {
-                    if (isSsettingsActive) {
+                    if (isGeofencingActive) {
                         Image(systemName: "xmark.circle")
                     } else {
                         Image(systemName: "circle.dashed")
@@ -67,8 +67,8 @@ struct LocationView: View {
 
             }
 
-            if (isSsettingsActive) {
-                SettingsView()
+            if (isGeofencingActive) {
+                GeofencingView()
                     .transition(
                         AnyTransition.opacity.animation(.linear(duration: animationDuration))
                     )

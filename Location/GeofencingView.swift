@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct SettingsView: View {
+struct GeofencingView: View {
     @EnvironmentObject var model: ViewModel
 //    @State var coordinateRegion = MKCoordinateRegion(
 //        center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
@@ -44,7 +44,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView().environmentObject(ViewModel())
+        GeofencingView().environmentObject(ViewModel())
     }
 }
 
